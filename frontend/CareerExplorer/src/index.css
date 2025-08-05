@@ -19,6 +19,7 @@ img {
   background-color: transparent !important;
 }
 
+
 .heading {
   font-family: 'Barlow', sans-serif;
   font-weight: 100;
@@ -26,6 +27,12 @@ img {
   font-size: 4rem;
   position: relative;
   width: max-content;
+}
+
+@media screen and (min-width: 968px) {
+  .heading {
+    font-size: 6rem;
+  }
 }
 
 @property --hoverVideo {
