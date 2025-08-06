@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './card.css'
 
 import { useState } from 'react';
@@ -7,9 +7,24 @@ import { useState } from 'react';
 const card = ({ dataName, formData, setFormData }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
+    const [options, setOptions] = useState([]);
 
-    const options = ['Travelling', 'Yoga', 'Gaming', 'Sports'];
+    //const options = ['Travelling', 'Yoga', 'Gaming', 'Sports'];
 
+    useEffect(() => {
+        getOptions();
+    }, []);
+
+    const getOptions = async () => {
+        try {
+            const response = await fetch('http://localhost:5000/api/options');
+            const jsonData = await response.json();
+            setOptions(jsonData[dataName])
+            console.log(options, " for ", dataName)
+        } catch (error) {
+            console.log('error ', error);
+        }
+    }
     const handleChange = (option) => {
         setSelectedOption(option);
         setIsOpen(false);
